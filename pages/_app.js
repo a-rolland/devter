@@ -1,7 +1,7 @@
-import '../styles/globals.css'
-import Head from 'next/head'
-import Footer from './components/Footer/Footer'
-import Navbar from './components/Navbar/Navbar'
+import "../styles/globals.css";
+import Head from "next/head";
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Footer />
     </>
-  ) 
+  );
 }
 
-export default MyApp
+export default MyApp;
