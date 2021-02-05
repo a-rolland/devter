@@ -1,43 +1,31 @@
 import Link from "next/link";
-import { getSortedPostsData } from "../lib/posts";
-import Date from "./components/Date/date";
-import Layout from "./components/Layout/layout";
+import { getRecentSortedPostsData } from "../lib/posts";
+import ArticlesList from "../components/ArticlesList/articlesList";
+import Layout from "../components/Layout/layout";
+import styles from "../styles/home.module.css";
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const recentPostsData = getRecentSortedPostsData();
   return {
     props: {
-      allPostsData,
+      recentPostsData,
     },
   };
 }
 
-function Home({ allPostsData }) {
+function Home({ recentPostsData }) {
   return (
     <Layout>
-      <h1 className="hello">
+      <h1 className={styles.heading2Xl}>
         Welcome to <span>Banshee</span>!
       </h1>
-      <Link href="/blog">
-        <a>GO TO BLOG</a>
-      </Link>
       <section>
         <h2>Recent articles</h2>
-        <ul>
-          {/* In the homepage, show only the 4 most recent posts */}
-          {allPostsData.slice(0, 4).map(({ id, date, title }) => (
-            <li key={id}>
-              <Link href={`/blog/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+        <ArticlesList posts={recentPostsData} />
       </section>
+      <Link href="/blog">
+        <a>SEE ALL ARTICLES</a>
+      </Link>
       {/* Check grid class for articles */}
     </Layout>
   );
