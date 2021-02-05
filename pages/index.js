@@ -1,7 +1,7 @@
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import { getSortedPostsData } from "../lib/posts";
-import Date from "./components/Date/Date";
+import Date from "./components/Date/date";
+import Layout from "./components/Layout/layout";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -14,34 +14,32 @@ export async function getStaticProps() {
 
 function Home({ allPostsData }) {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <span className={styles.brand}>Banshee</span>!
-        </h1>
-        <Link href="/posts">
-          <a>ARTICLES</a>
-        </Link>
-        <section>
-          <h2>Blog</h2>
-          <ul>
-            {allPostsData.map(({ id, date, title }) => (
-              <li className={styles.listItem} key={id}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br />
-                <small className={styles.lightText}>
-                  <Date dateString={date} />
-                </small>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </main>
-
+    <Layout>
+      <h1 className="hello">
+        Welcome to <span>Banshee</span>!
+      </h1>
+      <Link href="/blog">
+        <a>GO TO BLOG</a>
+      </Link>
+      <section>
+        <h2>Recent articles</h2>
+        <ul>
+          {/* In the homepage, show only the 4 most recent posts */}
+          {allPostsData.slice(0, 4).map(({ id, date, title }) => (
+            <li key={id}>
+              <Link href={`/blog/posts/${id}`}>
+                <a>{title}</a>
+              </Link>
+              <br />
+              <small>
+                <Date dateString={date} />
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
       {/* Check grid class for articles */}
-    </div>
+    </Layout>
   );
 }
 
