@@ -22,17 +22,19 @@ export function getStaticPaths() {
   };
 }
 
+// Import from components !!!
 export default function Post({ postData }) {
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{postData.title} | Banshee</title>
       </Head>
       <article className={styles.container}>
         <h1 className={styles.headingXl}>{postData.title}</h1>
-        <div className={styles.lightText}>
+        <p className={styles.lightText}>Written by: {postData.author}</p>
+        <small className={styles.lightText}>
           <Date dateString={postData.date} />
-        </div>
+        </small>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
       <Link href="/blog">

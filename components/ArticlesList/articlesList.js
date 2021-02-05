@@ -6,12 +6,17 @@ export default function ArticlesList({ posts }) {
   const postsList = posts.map((post) => {
     return (
       <li className={styles.listItem} key={post.id}>
+        <img
+          className={styles.thumbnail}
+          src={post.thumbnail}
+          alt="thumbnail"
+        />
         <Link href={`/blog/posts/${post.id}`}>
           <a>{post.title}</a>
         </Link>
         <br />
-        <small>
-          <Date dateString={post.date} />
+        <small className={styles.lightText}>
+          <Date dateString={post.date} /> · by {post.author}
         </small>
       </li>
     );
