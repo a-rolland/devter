@@ -4,7 +4,7 @@ import ArticlesList from "../components/ArticlesList/articlesList";
 import Layout from "../components/Layout/layout";
 import styles from "../styles/home.module.css";
 
-export async function getStaticProps() {
+export function getStaticProps() {
   const recentPostsData = getRecentSortedPostsData();
   return {
     props: {
