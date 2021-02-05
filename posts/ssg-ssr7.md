@@ -1,5 +1,5 @@
 ---
-title: "New Article"
+title: "New Article Test Vercel Deploy"
 date: "2020-01-08"
 author: "Antoine Rolland"
 thumbnail: "/images/default.png"
